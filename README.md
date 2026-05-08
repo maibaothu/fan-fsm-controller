@@ -14,7 +14,9 @@ The fan controller's behavior depends on both current state and current input (t
 ## What OOP concepts are used?
 
 **Inheritance** - Each operational state (Idle, Running, Cooling, Error) inherits from a shared base `State` class, for reuse and consistent structure across states
+
 **Polymorphism** - The fan controller invokes the same interface across all states, but each state responds differently, for instance, the same temperature input can triggers cooling in this state but can also be an error in another.
+
 **Encapsulation** - User interactions (start, stop, reset) are intentionally limited in scope, which means internal data are protected from external modification, for example, temperature thresholds and state transition logic in this fan controller, to ensure system safety and stability.
 
 ---
@@ -22,8 +24,11 @@ The fan controller's behavior depends on both current state and current input (t
 ## What major features exist?
 
 **Automatic temperature-driven state transitions** - the system continuously monitors temperature and transitions states without manual control from users
+
 **User mode controls** - users can interact (`start`, `stop`, `reset`) with the system through the controlled interface without exposing internal logic
+
 **Fault detection and error state** - critical temperature or hardware fault locks the system into a protected error state to prevent hardware damages
+
 **Manual reset only with safety guard** - to ensure the users acknowledges the fault before resuming normal operatio, reset will be denied if temperature is still critical
 
 
